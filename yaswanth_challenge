@@ -1,0 +1,20 @@
+# Enter your code here. Read input from STDIN. Print output to STDOUT
+import re
+
+def is_valid_credit_card(card_number):
+    pattern = re.compile(r'^(4|5|6)\d{3}-?\d{4}-?\d{4}-?\d{4}$')
+    if not pattern.match(card_number):
+        return False
+        
+    card_number = card_number.replace('-', '')
+    if re.search(r'(\d)\1{3}', card_number):
+        return False
+    return True
+    
+n = int(input().strip())
+for _ in range(n):
+    card_number = input().strip()
+    if is_valid_credit_card(card_number):
+        print("Valid")
+    else:
+        print("Invalid")
